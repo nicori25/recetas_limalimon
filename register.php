@@ -14,7 +14,7 @@ if ($_POST) {
 }
 ?>
 
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/style.css">
 
 <div class="form-box">
     <h2>Registro</h2>

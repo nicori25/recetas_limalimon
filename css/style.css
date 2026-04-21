@@ -125,4 +125,86 @@ input, textarea, select {
     nav {
         margin-top: 10px;
     }
+}.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #c6e92a;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* BUSCADOR */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.search-box input {
+    border: none;
+    padding: 8px 12px;
+    outline: none;
+}
+
+.search-box button {
+    border: none;
+    background: #8bc34a;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+.perfil-container {
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.perfil-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.perfil-box h3 {
+    margin-bottom: 15px;
+}
+.btn-edit {
+    display: inline-block;
+    margin-top: 10px;
+    background: #2196f3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-delete {
+    display: inline-block;
+    margin-top: 10px;
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
 }

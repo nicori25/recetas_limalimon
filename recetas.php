@@ -8,12 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 ?>
 <link rel="stylesheet" href="css/style.css">
 
-<header>
-    <h1>🍋 LimaLimón</h1>
-    <nav>
-        <a href="logout.php">Cerrar sesión</a>
-    </nav>
-</header>
+<?php include("header.php"); ?>
 
 <div class="container">
     <h2>Hola <?php echo $_SESSION['user_nombre']; ?></h2>
@@ -29,6 +24,8 @@ if (!isset($_SESSION['user_id'])) {
                 <option value="sin gluten">Sin gluten</option>
                 <option value="vegano">Vegano</option>
                 <option value="sin lactosa">Sin lactosa</option>
+                <option value="vegetariana">Sin lactosa</option>
+                <option value="sin azúcar">Sin azúcar</option>
             </select>
 
             <button type="submit">Guardar receta</button>
@@ -38,7 +35,10 @@ if (!isset($_SESSION['user_id'])) {
 <?php
 include("config.php");
 
-$sql = "SELECT * FROM recetas ORDER BY id DESC";
+$sql = "SELECT recetas.*, usuarios.nombre 
+        FROM recetas 
+        JOIN usuarios ON recetas.usuario_id = usuarios.id 
+        ORDER BY recetas.id DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -48,8 +48,33 @@ $result = $conn->query($sql);
     <div class="card">
         <h3><?php echo $row['titulo']; ?></h3>
         <p><?php echo $row['descripcion']; ?></p>
+        <p><strong>Publicado por:</strong> <?php echo $row['nombre']; ?></p>
+        <span class="tag"><?php echo $row['tipo']; ?></span>
         <span class="tag"><?php echo $row['tipo']; ?></span>
     </div>
 
 <?php } ?>
+<?php 
+if (isset($_GET['buscar']) && $_GET['buscar'] != "") {
+    $buscar = "%" . $_GET['buscar'] . "%";
+
+    $stmt = $conn->prepare("SELECT recetas.*, usuarios.nombre 
+                            FROM recetas 
+                            JOIN usuarios ON recetas.usuario_id = usuarios.id 
+                            WHERE recetas.titulo LIKE ? 
+                               OR recetas.descripcion LIKE ? 
+                            ORDER BY recetas.id DESC");
+
+    $stmt->bind_param("ss", $buscar, $buscar);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $sql = "SELECT recetas.*, usuarios.nombre 
+            FROM recetas 
+            JOIN usuarios ON recetas.usuario_id = usuarios.id 
+            ORDER BY recetas.id DESC";
+
+    $result = $conn->query($sql);
+}
+?>
 </div>
