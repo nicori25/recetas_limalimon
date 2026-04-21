@@ -43,39 +43,3 @@ $sql = "SELECT recetas.*, usuarios.nombre
 $result = $conn->query($sql);
 ?>
 
-<div class="recetas-grid">
-<?php while ($row = $result->fetch_assoc()) { ?>
-    
-    <div class="card">
-        <h3><?php echo $row['titulo']; ?></h3>
-        <p><?php echo $row['descripcion']; ?></p>
-        <p><strong>Publicado por:</strong> <?php echo $row['nombre']; ?></p>
-        <span class="tag"><?php echo $row['tipo']; ?></span>
-        <span class="tag"><?php echo $row['tipo']; ?></span>
-    </div>
-
-<?php } ?>
-<?php 
-if (isset($_GET['buscar']) && $_GET['buscar'] != "") {
-    $buscar = "%" . $_GET['buscar'] . "%";
-
-    $stmt = $conn->prepare("SELECT recetas.*, usuarios.nombre 
-                            FROM recetas 
-                            JOIN usuarios ON recetas.usuario_id = usuarios.id 
-                            WHERE recetas.titulo LIKE ? 
-                               OR recetas.descripcion LIKE ? 
-                            ORDER BY recetas.id DESC");
-
-    $stmt->bind_param("ss", $buscar, $buscar);
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
-    $sql = "SELECT recetas.*, usuarios.nombre 
-            FROM recetas 
-            JOIN usuarios ON recetas.usuario_id = usuarios.id 
-            ORDER BY recetas.id DESC";
-
-    $result = $conn->query($sql);
-}
-?>
-</div>
