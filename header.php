@@ -4,7 +4,7 @@
     </div>
 
     <!-- BUSCADOR -->
-    <form method="GET" action="recetas.php" class="search-box">
+    <form method="GET" action="index.php" class="search-box">
         <input type="text" name="buscar" placeholder="Buscar recetas...">
         <button type="submit">🔍</button>
     </form>
