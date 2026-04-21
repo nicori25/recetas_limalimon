@@ -33,7 +33,7 @@ $result = $stmt->get_result();
                 class="btn-delete">
                 Eliminar
                 </a>
-                <a href="editar_receta.php?id=<?php echo $row['id']; ?>" class="btn-edit">
+                <a href="editar_recetas.php?id=<?php echo $row['id']; ?>" class="btn-edit">
                 Editar
                 </a>
             </div>

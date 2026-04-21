@@ -18,7 +18,7 @@ $result = $stmt->get_result();
 $receta = $result->fetch_assoc();
 ?>
 
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/style.css">
 <?php include("header.php"); ?>
 
 <div class="container">
@@ -33,6 +33,8 @@ $receta = $result->fetch_assoc();
             <textarea name="descripcion"><?php echo $receta['descripcion']; ?></textarea>
 
             <textarea name="ingredientes"><?php echo $receta['ingredientes']; ?></textarea>
+
+            <textarea name="pasos"><?php echo $receta['pasos']; ?></textarea>
 
             <input type="text" name="tipo" value="<?php echo $receta['tipo']; ?>">
 

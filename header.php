@@ -1,6 +1,6 @@
 <header class="header">
     <div class="logo">
-        🍋 <span>LimaLimón</span>
+        <img src="img/logo.png" alt="Logo">
     </div>
 
     <!-- BUSCADOR -->
@@ -23,3 +23,9 @@
         <?php } ?>
     </nav>
 </header>
+<style>
+    .header img{
+        width: 200px;
+        heigt: auto;
+    }
+</style>

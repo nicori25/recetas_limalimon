@@ -15,10 +15,11 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="form-box">
         <h3>Cargar receta</h3>
-        <form action="guardar_receta.php" method="POST">
+        <form action="guardar_recetas.php" method="POST">
             <input type="text" name="titulo" placeholder="Título" required>
             <textarea name="descripcion" placeholder="Descripción"></textarea>
             <textarea name="ingredientes" placeholder="Ingredientes"></textarea>
+            <textarea name="pasos" placeholder="Paso a paso de la receta"></textarea>
 
             <select name="tipo">
                 <option value="sin gluten">Sin gluten</option>

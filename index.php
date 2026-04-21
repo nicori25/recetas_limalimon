@@ -30,8 +30,15 @@ $result = $conn->query($sql);
         
         <div class="card">
             <h3><?php echo $row['titulo']; ?></h3>
+            <br>
             <p><?php echo $row['descripcion']; ?></p>
+            <br>
+            <p><?php echo $row['ingredientes']; ?></p>
+            <br>
+            <p><strong><?php echo $row['pasos']; ?></strong></p>
+            <br>
             <p><strong><?php echo $row['nombre']; ?></strong></p>
+            <br>
             <span class="tag"><?php echo $row['tipo']; ?></span>
         </div>
 

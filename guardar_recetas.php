@@ -9,11 +9,13 @@ if (!isset($_SESSION['user_id'])) {
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $ingredientes = $_POST['ingredientes'];
+$pasos = $_POST['pasos'];
 $tipo = $_POST['tipo'];
 $usuario_id = $_SESSION['user_id'];
 
-$stmt = $conn->prepare("INSERT INTO recetas (titulo, descripcion, ingredientes, tipo, usuario_id) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssi", $titulo, $descripcion, $ingredientes, $tipo, $usuario_id);
+$stmt = $conn->prepare("INSERT INTO recetas (titulo, descripcion, ingredientes, pasos, tipo, usuario_id) VALUES (?, ?, ?, ?, ?, ?)");
+
+$stmt->bind_param("sssssi", $titulo, $descripcion, $ingredientes, $pasos, $tipo, $usuario_id);
 
 $stmt->execute();
 
