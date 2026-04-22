@@ -29,6 +29,14 @@ if (!isset($_SESSION['user_id'])) {
                 <option value="sin azúcar">Sin azúcar</option>
             </select>
 
+            <select name="estacion" required>
+                <option value="">Seleccionar estación</option>
+                <option value="verano">Verano</option>
+                <option value="otoño">Otoño</option>
+                <option value="invierno">Invierno</option>
+                <option value="primavera">Primavera</option>
+            </select>
+
             <button type="submit">Guardar receta</button>
         </form>
     </div>

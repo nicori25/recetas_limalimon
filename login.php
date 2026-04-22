@@ -20,7 +20,7 @@ if ($_POST) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_nombre'] = $user['nombre'];
 
-            header("Location: recetas.php");
+            header("Location: index.php");
             exit();
 
         } else {

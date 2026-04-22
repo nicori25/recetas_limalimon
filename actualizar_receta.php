@@ -10,12 +10,22 @@ $descripcion = $_POST['descripcion'];
 $ingredientes = $_POST['ingredientes'];
 $pasos = $_POST['pasos'];
 $tipo = $_POST['tipo'];
+$estacion = $_POST['estacion'];
 
 $stmt = $conn->prepare("UPDATE recetas 
-SET titulo=?, descripcion=?, ingredientes=?, pasos=?, tipo=? 
+SET titulo=?, descripcion=?, ingredientes=?, pasos=?, tipo=?, estacion=? 
 WHERE id=? AND usuario_id=?");
 
-$stmt->bind_param("sssssii", $titulo, $descripcion, $ingredientes, $pasos, $tipo, $id, $user_id);
+$stmt->bind_param("ssssssii", 
+    $titulo, 
+    $descripcion, 
+    $ingredientes, 
+    $pasos, 
+    $tipo, 
+    $estacion, 
+    $id, 
+    $user_id
+);
 $stmt->execute();
 
 header("Location: mis_recetas.php");

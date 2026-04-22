@@ -38,6 +38,13 @@ $receta = $result->fetch_assoc();
 
             <input type="text" name="tipo" value="<?php echo $receta['tipo']; ?>">
 
+            <select name="estacion">
+                <option value="verano" <?php if($receta['estacion']=="verano") echo "selected"; ?>>Verano</option>
+                <option value="otoño" <?php if($receta['estacion']=="otoño") echo "selected"; ?>>Otoño</option>
+                <option value="invierno" <?php if($receta['estacion']=="invierno") echo "selected"; ?>>Invierno</option>
+                <option value="primavera" <?php if($receta['estacion']=="primavera") echo "selected"; ?>>Primavera</option>
+            </select>
+
             <button type="submit">Actualizar receta</button>
         </form>
     </div>

@@ -11,12 +11,22 @@ $descripcion = $_POST['descripcion'];
 $ingredientes = $_POST['ingredientes'];
 $pasos = $_POST['pasos'];
 $tipo = $_POST['tipo'];
+$estacion = $_POST['estacion'];
 $usuario_id = $_SESSION['user_id'];
 
-$stmt = $conn->prepare("INSERT INTO recetas (titulo, descripcion, ingredientes, pasos, tipo, usuario_id) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO recetas 
+(titulo, descripcion, ingredientes, pasos, tipo, estacion, usuario_id) 
+VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-$stmt->bind_param("sssssi", $titulo, $descripcion, $ingredientes, $pasos, $tipo, $usuario_id);
-
+$stmt->bind_param("ssssssi", 
+    $titulo, 
+    $descripcion, 
+    $ingredientes, 
+    $pasos, 
+    $tipo, 
+    $estacion, 
+    $usuario_id
+);
 $stmt->execute();
 
 header("Location: recetas.php");

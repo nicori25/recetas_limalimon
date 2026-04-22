@@ -132,12 +132,37 @@ input, textarea, select {
     background: #c6e92a;
     padding: 10px 20px;
 }
+.header img{
+    width: 200px;
+    height: auto;
+}
 
 .logo {
     font-size: 20px;
     font-weight: bold;
 }
+@media (max-width: 768px) {
+    
+    .menu-toggle {
+        display: block;
+    }
 
+    nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    nav.active {
+        display: flex;
+    }
+}
 /* BUSCADOR */
 .search-box {
     display: flex;
@@ -160,15 +185,13 @@ input, textarea, select {
     padding: 8px 12px;
     cursor: pointer;
 }
-
-/* NAV */
+/* NAV NORMAL */
 nav {
     display: flex;
-    align-items: center;
+    gap: 15px;
 }
 
 nav a {
-    margin-left: 15px;
     text-decoration: none;
     color: #333;
     font-weight: bold;
@@ -207,4 +230,27 @@ nav a {
     padding: 5px 10px;
     border-radius: 5px;
     text-decoration: none;
+}
+textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 5px;
+}
+.card form {
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+select {
+    margin-top: 5px;
 }
