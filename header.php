@@ -4,11 +4,11 @@
         <img src="img/logo.png" alt="logo">
     </div>
 
-    <!-- 🔍 BUSCADOR -->
-    <form method="GET" action="recetas.php" class="search-box">
-        <input type="text" name="buscar" placeholder="Buscar recetas...">
-        <button type="submit">🔍</button>
-    </form>
+    <!-- 🔎 BUSCADOR -->
+<form method="GET" action="" style="margin-bottom: 20px;">
+    <input type="text" name="busqueda" placeholder="Buscar recetas o ingredientes..." value="<?php echo $_GET['busqueda'] ?? ""; ?>">
+    <button type="submit">🔍 Buscar</button>
+</form>
 
     <nav>
         <a href="index.php">Inicio</a>

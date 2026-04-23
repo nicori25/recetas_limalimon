@@ -19,6 +19,7 @@ if ($_POST) {
 
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_nombre'] = $user['nombre'];
+            $_SESSION['preferencia_tipo'] = $user['preferencia_tipo'];
 
             header("Location: index.php");
             exit();
