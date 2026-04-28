@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_id'])) {
                 <option value="sin gluten">Sin gluten</option>
                 <option value="vegano">Vegano</option>
                 <option value="sin lactosa">Sin lactosa</option>
-                <option value="vegetariana">Sin lactosa</option>
+                <option value="vegetariana">Vegetariana</option>
                 <option value="sin azúcar">Sin azúcar</option>
             </select>
 

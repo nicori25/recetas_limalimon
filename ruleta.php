@@ -50,7 +50,7 @@ while ($row = $result->fetch_assoc()) {
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            transition: transform 2s ease-out;
+            transition: transform 3s ease-out;
             background: #f5f5f5;
         }
 
@@ -58,6 +58,12 @@ while ($row = $result->fetch_assoc()) {
             font-size: 12px;
             width: 80px;
             text-align: center;
+        }
+
+        /* 🔻 PUNTERO */
+        .puntero {
+            font-size: 30px;
+            margin-bottom: -10px;
         }
 
         button {
@@ -78,6 +84,16 @@ while ($row = $result->fetch_assoc()) {
             font-size: 20px;
             color: #333;
         }
+
+        .ver-receta {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #ff9800;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -91,6 +107,8 @@ while ($row = $result->fetch_assoc()) {
     <?php if (count($recetas) == 0) { ?>
         <p>No hay recetas para esta estación 😢</p>
     <?php } else { ?>
+
+        <div class="puntero">⬇️</div>
 
         <div id="ruleta">
             <?php foreach ($recetas as $r) { ?>
@@ -111,20 +129,33 @@ let recetas = <?php echo json_encode($recetas); ?>;
 function girar() {
     if (recetas.length === 0) return;
 
-    let random = Math.floor(Math.random() * recetas.length);
-    let receta = recetas[random];
-
     let ruleta = document.getElementById("ruleta");
+    let resultado = document.getElementById("resultado");
 
-    // 🎡 giro visual
-    let giro = 360 * 5 + (random * 30);
-    ruleta.style.transform = "rotate(" + giro + "deg)";
+    // reset transición para evitar bugs
+    ruleta.style.transition = "none";
+    ruleta.style.transform = "rotate(0deg)";
 
-    // 🕐 mostrar resultado después del giro
     setTimeout(() => {
-        document.getElementById("resultado").innerHTML =
-            "🍽️ Te tocó: <strong>" + receta.titulo + "</strong>";
-    }, 2000);
+        ruleta.style.transition = "transform 3s ease-out";
+
+        let random = Math.floor(Math.random() * recetas.length);
+        let receta = recetas[random];
+
+        // giro más realista
+        let giro = 360 * 5 + (random * (360 / recetas.length));
+        ruleta.style.transform = "rotate(" + giro + "deg)";
+
+        setTimeout(() => {
+            resultado.innerHTML = `
+                🍽️ Te tocó: <strong>${receta.titulo}</strong><br>
+                <a class="ver-receta" href="ver_receta.php?id=${receta.id}">
+                    Ver receta
+                </a>
+            `;
+        }, 3000);
+
+    }, 50);
 }
 </script>
 

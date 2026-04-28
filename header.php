@@ -4,11 +4,23 @@
         <img src="img/logo.png" alt="logo">
     </div>
 
-    <!-- 🔎 BUSCADOR -->
-<form method="GET" action="" style="margin-bottom: 20px;">
-    <input type="text" name="busqueda" placeholder="Buscar recetas o ingredientes..." value="<?php echo $_GET['busqueda'] ?? ""; ?>">
-    <button type="submit">🔍 Buscar</button>
-</form>
+    <!-- 🔎 BUSCADOR CON VIVO -->
+    <div class="buscador-container">
+        <form method="GET" action="index.php" class="buscador-nav" onsubmit="return true;">
+            <input 
+                type="text" 
+                id="buscador"
+                name="busqueda" 
+                placeholder="Buscar recetas..." 
+                autocomplete="off"
+                value="<?php echo $_GET['busqueda'] ?? ""; ?>"
+            >
+            <button type="submit">🔍</button>
+        </form>
+
+        <!-- RESULTADOS EN VIVO -->
+        <div id="resultados"></div>
+    </div>
 
     <nav>
         <a href="index.php">Inicio</a>
@@ -35,12 +47,14 @@
     </nav>
 
 </header>
+
 <style>
-    .header img{
-        width: 200px;
-        heigt: auto;
-    }
-   nav {
+.header img{
+    width: 200px;
+    height: auto;
+}
+
+nav {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -52,12 +66,41 @@ nav a {
     font-weight: bold;
 }
 
-/* CONTENEDOR */
+/* CONTENEDOR BUSCADOR */
+.buscador-container {
+    position: relative;
+}
+
+#buscador {
+    padding: 8px;
+    width: 200px;
+}
+
+/* RESULTADOS */
+#resultados {
+    position: absolute;
+    background: white;
+    width: 100%;
+    border: 1px solid #ccc;
+    z-index: 999;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.resultado-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.resultado-item:hover {
+    background: #f0f0f0;
+}
+
+/* DROPDOWN */
 .dropdown {
     position: relative;
 }
 
-/* BOTÓN */
 .dropbtn {
     background: none;
     border: none;
@@ -65,7 +108,6 @@ nav a {
     cursor: pointer;
 }
 
-/* CONTENIDO OCULTO */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -78,7 +120,6 @@ nav a {
     overflow: hidden;
 }
 
-/* LINKS */
 .dropdown-content a {
     display: block;
     padding: 10px;
@@ -89,8 +130,36 @@ nav a {
     background: #f5f5f5;
 }
 
-/* MOSTRAR AL PASAR EL MOUSE */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 </style>
+
+<!-- 🔥 JS BUSCADOR EN VIVO -->
+<script>
+const input = document.getElementById("buscador");
+const resultados = document.getElementById("resultados");
+
+input.addEventListener("keyup", function() {
+    let query = input.value;
+
+    if (query.length < 2) {
+        resultados.innerHTML = "";
+        return;
+    }
+
+    fetch("buscar_ajax.php?q=" + query)
+        .then(res => res.text())
+        .then(data => {
+            resultados.innerHTML = data;
+        });
+});
+
+// click en resultado
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("resultado-item")) {
+        let texto = e.target.innerText;
+        window.location.href = "index.php?busqueda=" + texto;
+    }
+});
+</script>
